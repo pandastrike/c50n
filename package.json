@@ -1,0 +1,27 @@
+{
+  "name": "cson",
+  "version": "0.0.0",
+  "description": "A simple CSON parser/stringifier",
+  "main": "cson.coffee",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "fairmont": "~0.1.1",
+    "coffee-script": "~1.5.0"
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+    "test": "\"coffee test/test.coffee\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dyoder/cson.git"
+  },
+  "keywords": [
+    "cson"
+  ],
+  "author": "Daniel Yoder, Matthew King",
+  "license": "MIT"
+}
