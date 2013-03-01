@@ -37,7 +37,7 @@ _stringify = (object, options={}) ->
       object.toString()
     
     
-stringify = (object) -> _stringify object
+stringify = (object) -> (_stringify object)[1..-1]
 
 module.exports = 
   parse: parse
