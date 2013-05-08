@@ -1,9 +1,10 @@
-coffee = require "coffee-script"
+unless CoffeeScript?
+  CoffeeScript = require "coffee-script"
 {type} = require "fairmont"
  
 parse = (source, options={}) ->
   options.sandbox ?= true
-  coffee.eval source, options
+  CoffeeScript.eval source, options
   
 quote = (string) ->
   "'" + (string.replace /'/g, "\\'") + "'"
