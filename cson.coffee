@@ -1,5 +1,6 @@
-unless CoffeeScript?
-  CoffeeScript = require "coffee-script"
+CoffeeScript = window?.CoffeeScript 
+CoffeeScript ?= require "coffee-script"
+
 {type} = require "fairmont"
  
 parse = (source, options={}) ->
