@@ -1,10 +1,14 @@
 {
   "name": "c50n",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A simple CSON parser/stringifier",
   "main": "cson.coffee",
   "directories": {
     "test": "test"
+  },
+  "bin": {
+    "cson2json": "./bin/cson2json",
+    "json2cson": "./bin/json2cson"
   },
   "dependencies": {
     "fairmont": "~0.3.x",
