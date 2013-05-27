@@ -1,13 +1,13 @@
 {
   "name": "c50n",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "A simple CSON parser/stringifier",
   "main": "cson.coffee",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "fairmont": "~0.1.1",
+    "fairmont": "~0.3.x",
     "coffee-script": "~1.5.0"
   },
   "devDependencies": {},
