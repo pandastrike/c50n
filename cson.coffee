@@ -25,16 +25,33 @@ _stringify = (object, options={}) ->
   inner = outer + "  "
   
   switch type object
+
     when "object"
-      properties = (property key, (_stringify value, indent: inner) for key,value of object).join("\n#{outer}")
-      "\n#{outer}#{properties}\n#{outer}"
+      properties = do ->
+        for key, value of object
+          property( key, _stringify( value, indent: inner) )
+      if properties.length > 0
+        properties = properties.join("\n#{outer}")
+        "\n#{outer}#{properties}\n#{outer}"
+      else
+        "{}"
+        
     when "array"
-      elements = ((_stringify element, indent: inner) for element in object).join("\n#{inner}")
-      "[\n#{inner}#{elements}\n#{outer}]"
+      elements = do ->
+        for element in object
+          _stringify( element, indent: inner)
+      if elements.length > 0
+        elements = elements.join("\n#{outer}")
+        "[\n#{outer}#{elements}\n#{outer}]"
+      else
+        "[]"
+
     when "string"
       quote object.toString()
+
     when "function"
       ;
+
     else
       object.toString()
     
