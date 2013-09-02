@@ -1,6 +1,6 @@
 {
   "name": "c50n",
-  "version": "0.4.1",
+  "version": "0.4.3",
   "description": "A simple CSON parser/stringifier",
   "main": "cson.coffee",
   "directories": {

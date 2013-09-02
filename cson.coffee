@@ -51,6 +51,9 @@ _stringify = (object, options={}) ->
 
     when "function"
       ;
+      
+    when "null" then "null"
+    when "undefined" then "undefined"
 
     else
       object.toString()
