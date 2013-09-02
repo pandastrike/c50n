@@ -3,10 +3,17 @@ CoffeeScript ?= require "coffee-script"
 
 {type} = require "fairmont"
  
-parse = (source, options={}) ->
-  options.sandbox ?= true
-  CoffeeScript.eval source, options
-  
+parse = do ->
+  if window?.CoffeeScript?
+    (source) -> CoffeeScript.eval source, {}
+  else
+    vm = require "vm"
+    CoffeeScript = require "coffee-script"
+    (source) ->
+      sandbox = vm.Script.createContext()
+      js = CoffeeScript.compile source, bare: true
+      vm.runInThisContext js, sandbox
+
 quote = (string) ->
   "'" + (string.replace /'/g, "\\'") + "'"
   
