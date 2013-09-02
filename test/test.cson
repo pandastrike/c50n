@@ -7,6 +7,8 @@ health:
   ip: "127.0.0.1"
   port: 3000
   blank: {}
+  blurg1: null
+  blurg2: undefined
 simple:
   path: "test/data/numbered_lines.txt"
 catalina:
