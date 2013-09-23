@@ -1,6 +1,5 @@
 {basename} = require "path"
-{createReadStream} = require "fs"
-{readStream} = require "fairmont"
+{read} = require "fairmont"
 CSON = require "./cson"
 
 [_,script,path] = process.argv
@@ -10,11 +9,19 @@ converters =
   json2cson: (source) -> CSON.stringify( JSON.parse( source ) )
   cson2json: (source) -> JSON.stringify( CSON.parse( source ))
 
-convert = (stream) -> converters[name]( readStream( stream ) )
-run = (stream) -> process.stdout.write( convert( stream ) )
+convert = (source) -> converters[name](source)
+run = (source) -> process.stdout.write(convert(source))
 
-if path?
-  stream = createReadStream( path )
-  stream.on "open", -> run( stream )
-else
-  run( process.stdin )
+try
+  if path?
+    run(read(path))
+  else
+    {stdin} = process
+    source = ""
+    stdin.resume()
+    stdin.on "data", (data) -> 
+      source += data.toString("utf-8")
+    stdin.on "end", ->
+      run(source)
+catch error
+  console.error error.message
