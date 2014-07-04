@@ -3,9 +3,11 @@ CoffeeScript ?= require "coffee-script"
 
 {type} = require "fairmont"
 parse = do ->
-  {word, any, all, between,
+  {regexp, word, any, all, between,
     list, delimited, rule} = require "bartlett"
 
+  _word = word
+  word = (s) -> all ignore(ws), _word(s)
   decimal_point = word "."
   comma = word ","
   colon = word ":"
@@ -16,10 +18,10 @@ parse = do ->
   escape = word "\\"
   escaped_dquote = all escape, squote
   escaped_dquote = all escape, dquote
-  not_squote = any squote, escaped_squote
-  not_dquote = any dquote, escaped_dquote
-  squoted = between squote, not_squote
-  dquoted = between dquote, not_dquote
+  not_squote = any (except squote), escaped_squote
+  not_dquote = any (except dquote), escaped_dquote
+  squoted = between squote, (list not_squote)
+  dquoted = between dquote, (list not_dquote)
   string = any squoted, dquoted
   integer = regexp /\d+/
   float = all integer decimal_point integer
