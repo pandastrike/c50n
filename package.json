@@ -1,9 +1,11 @@
 {
   "name": "c50n",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "A simple CSON parser/stringifier",
-  "main": "cson.coffee",
+  "main": "lib/index.js",
   "directories": {
+    "lib": "lib",
+    "src": "src",
     "test": "test"
   },
   "bin": {
@@ -11,26 +13,25 @@
     "json2cson": "./bin/json2cson"
   },
   "dependencies": {
-    "coffee-script": "^1.7.1",
-    "fairmont": "^0.7.4"
+    "fairmont": "^0.7.4",
+    "cson-safe": "^0.1.1"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "\"coffee test/test.coffee\""
+    "test": "coffee test/index.coffee",
+    "prepublish": "coffee -o lib/ -c src/*.coffee"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/dyoder/cson.git"
+    "url": "git://github.com/pandastrike/cson.git"
   },
   "keywords": [
     "cson"
   ],
-  "author": {
-    "name": "Daniel Yoder, Matthew King"
-  },
+  "authors": [
+    "Dan Yoder",
+    "Matthew King"
+  ],
   "license": "MIT",
-  "readme": "# Introduction\n\nInspired by the CSON npm package and, of course, CoffeeScript, this is a simplified and streamlined implementation.",
-  "readmeFilename": "README.md",
-  "_id": "c50n@0.3.0",
-  "_from": "c50n"
+  "readmeFilename": "README.md"
 }
